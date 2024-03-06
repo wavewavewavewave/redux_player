@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Navigator from "./components/Navigator/Navigator";
+import Player from "./components/Player/Player";
+import {Route, Routes} from "react-router";
+import Playlist from "./pages/Playlist/Playlist";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className={'app'}>
+            <div className={'container'}>
+                <Navigator/>
+                <Routes>
+                    <Route path="/playlist" element={<Playlist/>}/>
+                </Routes>
+                <Player/>
+            </div>
+        </div>
+    );
 }
 
 export default App;
