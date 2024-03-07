@@ -18,6 +18,10 @@ const Controls = (props) => {
     const nextSongHandler = () => {
         dispatch(skipSong(true))
     }
+    const onChangeHandler = e => {
+        props.currTimeChangeHandler(e.target.value)
+    }
+    const currTimePercentage = props.dur ? (props.audioCurrentTime * 100) / props.dur : 0
 
     return (
         <div className={'controls'}>
@@ -40,6 +44,11 @@ const Controls = (props) => {
                     type="range"
                     min="0"
                     max="100"
+                    value={currTimePercentage}
+                    style={{
+                        backgroundSize: `${currTimePercentage}% 100%`
+                    }}
+                    onChange={onChangeHandler}
                 />
             </div>
         </div>
