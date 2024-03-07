@@ -15,6 +15,11 @@ const Player = () => {
     let currSong = songs.find((song,index) => index === currentSongIndex)
 
     useEffect(() => {
+        if (!isVolumeOff) {
+            audioEl.current.volume = volume
+        } else {
+            audioEl.current.volume = 0
+        }
         if (isPlaying) {
             audioEl.current.play()
         } else {
@@ -24,16 +29,19 @@ const Player = () => {
     const onCanPlayHandler = e => {
         setDuration(e.target.duration)
     }
+
     const currTimeChangeHandler = event => {
         let compute = (event * duration) / 100
         setCurrTime(compute)
         audioEl.current.currentTime = compute
     }
+
     const volumeChangeHandler = event => {
         setVolume(event)
         audioEl.current.volume = event
         setIsVolumeOff(audioEl.current.volume === 0)
     }
+
     const volumeOffHandler = () => {
         setIsVolumeOff(!isVolumeOff)
     }
