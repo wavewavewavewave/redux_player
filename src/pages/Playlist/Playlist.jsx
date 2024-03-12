@@ -21,9 +21,12 @@ const Playlist = () => {
                 isDeleted={isDeleted}
             />
         ))
-
+    // const noMusicContent = (
+    //     <NoMusicContent>No Music</NoMusicContent>
+    // )
     return (
         <div className={'playlist'}>
+            {/*{songs.length > 0 ? playlist : noMusicContent}*/}
             {playlist}
         </div>
     )

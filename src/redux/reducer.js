@@ -8,7 +8,7 @@ import track6 from '../audio/track7.mp3'
 import track7 from '../audio/track8.mp3'
 import track8 from '../audio/track9.mp3'
 import track9 from '../audio/track10.mp3'
-import {CHOOSE_SONG, IS_PLAYING, SKIP_SONG} from "./types";
+import {CHOOSE_SONG, DELETE_SONG, IS_PLAYING, RESTORE_SONG, SKIP_SONG} from "./types";
 
 const initialState = {
     songs: [
@@ -105,6 +105,18 @@ export const playerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentSongIndex: action.payload
+            }
+        case RESTORE_SONG:
+            return {
+                ...state,
+                songs: action.payload.restoredSongs,
+                deletedSongs: action.payload.filterDeletedSongs,
+            }
+        case DELETE_SONG:
+            return {
+                ...state,
+                songs: action.payload.filteredSongs,
+                deletedSongs: action.payload.updateDeletedSongs
             }
         default:
             return state

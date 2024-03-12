@@ -4,7 +4,7 @@ import {faTrashAlt, faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import './PlayItem.css';
 import Button from "../../../components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {chooseSong} from "../../../redux/actions";
+import {chooseSong, deleteHandler} from "../../../redux/actions";
 
 const PlayItem = (props) => {
     const dispatch = useDispatch()
@@ -15,6 +15,9 @@ const PlayItem = (props) => {
         if (!props.isDeleted) {
             dispatch(chooseSong(e, props.index))
         }
+    }
+    const ondDeleteHandler = () => {
+        dispatch(deleteHandler(props.song, props.id, props.isDeleted,props.index))
     }
 
     return (
@@ -29,7 +32,10 @@ const PlayItem = (props) => {
                     <span>{props.artist}</span>
                 </p>
             </main>
-            <Button isDeleted={props.isDeleted}>
+            <Button
+                onClick={ondDeleteHandler}
+                isDeleted={props.isDeleted}
+            >
                 <FontAwesomeIcon icon={props.isDeleted ? faPlusSquare : faTrashAlt}/>
             </Button>
         </div>
