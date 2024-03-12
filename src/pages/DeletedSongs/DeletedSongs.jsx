@@ -1,8 +1,8 @@
 import React from 'react'
 import "./LikedSongs.css"
 import { useSelector } from 'react-redux'
-import PlayItem from './../Playlist/PlayItem/PlayItem';
 import NoMusicContent from "../../components/NoMusicContent/NoMusicContent";
+import PlayItem from "../Playlist/PlayItem/PlayItem";
 
 
 const DeletedSongs = () => {

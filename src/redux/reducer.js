@@ -106,17 +106,17 @@ export const playerReducer = (state = initialState, action) => {
                 ...state,
                 currentSongIndex: action.payload
             }
-        case DELETE_SONG:
-            return {
-                ...state,
-                songs: action.payload.filteredSongs,
-                deletedSongs: action.payload.updateDeletedSongs
-            }
         case RESTORE_SONG:
             return {
                 ...state,
                 songs: action.payload.restoredSongs,
                 deletedSongs: action.payload.filterDeletedSongs,
+            }
+        case DELETE_SONG:
+            return {
+                ...state,
+                songs: action.payload.filteredSongs,
+                deletedSongs: action.payload.updateDeletedSongs
             }
         default:
             return state
