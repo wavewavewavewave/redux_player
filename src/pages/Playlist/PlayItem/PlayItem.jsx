@@ -32,7 +32,7 @@ const PlayItem = (props) => {
                     <span>{props.artist}</span>
                 </p>
             </main>
-            <Button isDeleted={props.isDeleted} onClick={ondDeleteHandler}>
+            <Button isDeleted={props.isDeleted}>
                 <FontAwesomeIcon icon={props.isDeleted ? faPlusSquare : faTrashAlt}/>
             </Button>
         </div>

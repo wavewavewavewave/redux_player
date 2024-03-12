@@ -2,19 +2,10 @@ import {CHOOSE_SONG, DELETE_SONG, IS_PLAYING, RESTORE_SONG, SKIP_SONG} from "./t
 
 
 export const chooseSong = (event, index) => dispatch => {
-    if (
-        event.target.tagName === "BUTTON" ||
-        event.target.tagName === "svg" ||
-        event.target.tagName === "path"){
-        return;
-    } else {
-        dispatch({
-            type: CHOOSE_SONG,
-            index,
-        })
-
-    }
-
+    dispatch({
+        type: CHOOSE_SONG,
+        index,
+    })
 }
 export const isPlayingChange = () => dispatch => {
     dispatch({
@@ -42,7 +33,6 @@ export const skipSong = (forwards = true) => (dispatch, getState) => {
 }
 export const deleteHandler = (song, id, isDeleted, index) => (dispatch, getState) => {
     const {songs, deletedSongs, currentSongIndex} = getState().player
-
     if (isDeleted) {
         const restoredSongs = [song, ...songs].sort((s1, s2) => s1.id - s2.id)
         const filterDeletedSongs = deletedSongs.filter(song => song.id !== id)
@@ -60,18 +50,16 @@ export const deleteHandler = (song, id, isDeleted, index) => (dispatch, getState
             console.log(id, songs[currentSongIndex].id, true)
         }
     } else {
-
         const filteredSongs =
-            songs
-                .sort((s1, s2) => s1.id - s2.id)
+            songs.sort((s1, s2) => s1.id - s2.id)
                 .filter(song => song.id !== id)
         const updateDeletedSongs = [song, ...deletedSongs]
         if (index < currentSongIndex) {
             dispatch(skipSong(false))
         } else if (currentSongIndex === songs.length - 1) {
             dispatch(skipSong(true))
-
         }
+
         dispatch({
             type: DELETE_SONG,
             payload: {
@@ -82,3 +70,5 @@ export const deleteHandler = (song, id, isDeleted, index) => (dispatch, getState
     }
 
 }
+
+

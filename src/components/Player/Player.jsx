@@ -21,6 +21,7 @@ const Player = () => {
             audioEl.current.volume = 0
         }
         if (isPlaying) {
+            console.log('LOG')
             audioEl.current.play()
         } else {
             audioEl.current.pause()
@@ -45,12 +46,13 @@ const Player = () => {
     const volumeOffHandler = () => {
         setIsVolumeOff(!isVolumeOff)
     }
+    console.log(songs, 'SSSSSSS')
 
     return (
         <div className={'player'}>
             <div className={'player-content'}>
                 <audio
-                    src={songs.length > 0 ? songs[currentSongIndex].audio : null}
+                    src={songs.length > 0 && songs[currentSongIndex] ? songs[currentSongIndex].audio : null}
                     ref={audioEl}
                     onTimeUpdate={(e) => setCurrTime(e.target.currentTime)}
                     onCanPlay={onCanPlayHandler}
